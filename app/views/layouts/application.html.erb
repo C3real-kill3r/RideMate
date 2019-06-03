@@ -7,9 +7,101 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
   </head>
-
   <body>
+  <section class="hero is-light is-small is-bold">
+      <!-- Hero head: will stick at the top -->
+      <div class="hero-head">
+        <nav class="navbar">
+          <div class="container">
+            <div class="navbar-brand">
+            <span class="navbar-item">
+            <span class="icon">
+              <i class="fas fa-home"></i>
+            </span>
+              <strong><%= link_to 'Ride Mate', root_path, class: "navbar-item" %></strong>
+              </span>
+              <span class="navbar-burger burger" data-target="navbarMenuHeroA">
+                <span></span>
+                <span></span>
+                <span></span>
+              </span>
+            </div>
+            <div id="navbarMenuHeroB" class="navbar-menu">
+              <div class="navbar-end">
+                <% if current_user %>
+                <a class="navbar-item">
+                  Welcome <%= current_user.username %>!
+                </a>
+                <a class="navbar-item">
+                  <div class="dropdown is-hoverable">
+                    <div class="dropdown-trigger">
+                      <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
+                        <span>Rides</span>
+                        <span class="icon is-small">
+                          <i class="fas fa-angle-down" aria-hidden="true"></i>
+                        </span>
+                      </button>
+                    </div>
+                    <div class="dropdown-menu" id="dropdown-menu4" role="menu">
+                      <div class="dropdown-content">
+                        <a href="#" class="dropdown-item">
+                          Available Rides
+                        </a>
+                        <a href="#" class="dropdown-item">
+                          Provide Ride
+                        </a>
+                        <div class="dropdown-item">
+                          <%= link_to "Ride Mates", users_path%>
+                        </div>
+                        <hr class="dropdown-divider">
+                        <div class="dropdown-item">
+                          <p>Have fun carpooling with a <strong>Ride Mate</strong>. Have an EPIC ride .</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+                <span class="navbar-item">
+                  <a class="button is-primary is-inverted">
+                    <span><%= link_to "Log Out", logout_path, class: "button is-danger" %></span>
+                  </a>
+                </span>
+                <% else %>
+                <span class="navbar-item">
+                  <a class="button is-info is-inverted">
+                    <span><%= link_to "Log In", login_path, class: "button"  %></span>
+                  </a>
+                </span>
+                <span class="navbar-item">
+                  <a class="button is-info is-inverted">
+                    <span><%= link_to "Sign Up", signup_path, class: "button is-primary"  %></span>
+                  </a>
+                </span>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+
+      <!-- Hero content: will be in the middle -->
+      <div class="hero-body">
+        <div class="container has-text-centered">
+          <h1 class="title">
+            <%= yield :page_title %>
+          </h1>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+    <div class="container">
     <%= yield %>
+    </div>
+  </section>
   </body>
 </html>

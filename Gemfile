@@ -39,13 +39,21 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # add dotenv gem to always keep your secret keys safe
 gem 'dotenv-rails'
 
-#Bulma CSS
+# Bulma CSS
 gem 'bulma-rails', '~> 0.7.5'
 
-#simple form
+# simple form
 gem 'simple_form', '~> 4.1'
 
-gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
+# The bcrypt Ruby gem provides a simple wrapper for safely handling passwords.
+gem 'bcrypt', '~> 3.1', '>= 3.1.13'
+
+# gem to handle an uploaded image
+gem 'carrierwave', '~> 1.3', '>= 1.3.1'
+
+gem 'mini_magick', '~> 4.9', '>= 4.9.3'
+
+gem 'toastr-rails', '~> 1.0', '>= 1.0.3'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -65,6 +73,8 @@ group :development do
   gem 'guard-livereload', '~> 2.5', '>= 2.5.2', require: false
   # Make errors better looking
   gem 'better_errors', '~> 2.5', '>= 2.5.1'
+  # handle image upload in development
+  gem 'fog', '~> 2.1'
 end
 
 group :test do

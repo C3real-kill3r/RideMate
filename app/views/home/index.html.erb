@@ -1,0 +1,41 @@
+<div class="tile is-ancestor">
+  <div class="tile is-4 is-vertical is-parent">
+    <div class="tile is-child box">
+      <p class="title">Why Ride Mate&#10067; </p>
+      <p>One of the concerns of using ridesharing services has been the safety of the drivers. Incidents of drivers harming passengers or passengers have been reported, though are rare.</p><br/>
+      <p><strong>Ride Mate</strong> is only accessible to <strong><i>Andela employees</i></strong> whose reputation for unrivalled dignity and integrity precedes them; hence security of the rider and the passenger is guaranteed</p>
+      <br />
+      <% if !current_user %>
+      <%= link_to "Sign Up", signup_path, class: "button is-primary"  %>
+      <% end %>
+    </div>
+    <div class="tile is-child box">
+      <p class="title">Rides &#128662; </p>
+      <p>This application offers an easy and arguably most efficient way for an <strong><i>Andelan</i></strong> to get a ride. A user can either volunteer to <strong>provide</strong> a ride for a specific route for a specific period of time; or <strong>request</strong> a ride provided there's an availabilty for the same</p>
+      <p>
+      <br />
+      <% if current_user %>
+      <strong><%= link_to "Get a ride mate", users_path %></strong>
+      <% end %>
+      </p>
+    </div>
+  </div>
+  <div class="tile is-parent">
+    <div class="tile is-child box">
+      <p class="title">About &#128269;</p>
+      <div>
+      <figure class="image is-2by1">
+        <img src="https://media.gcflearnfree.org/content/587e2689a0b0042cb85864c4_01_17_2017/ridesharing_image_2_web.jpg">
+          </figure>
+          </div>
+          <br />
+          <div class="container">
+          <article class="message is-dark">
+            <div class="message-body">
+              <p><strong>Ride Mate</strong> is a carpool application which allows an <strong><i>Andelan</i></strong> car owner to give a ride to another <strong><i>Andelan</i></strong> who does not have a car or who is not feeling like driving his/her own personal car.</p>
+            </div>
+          </article>
+    </div>
+    </div>
+  </div>
+</div>ˀ

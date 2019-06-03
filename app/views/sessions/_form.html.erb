@@ -1,0 +1,30 @@
+<%= form_with url: sessions_path do |f| %>
+  <div class="field">
+  <label class="label">Email</label>
+  <div class="control has-icons-left has-icons-right">
+    <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'input', required: true %>
+    <span class="icon is-small is-left">
+      <i class="fas fa-envelope"></i>
+    </span>
+  </div>
+</div>
+<div class="field">
+  <label class="label">Password</label>
+  <div class="control has-icons-left has-icons-right">
+    <%= f.password_field :password, autocomplete: 'current-password', class: 'input', required: true %>
+    <span class="icon is-small is-left">
+      <i class="fas fa-lock"></i>
+    </span>
+  </div>
+</div>
+<div class="field">
+    <label class="checkbox">
+        <input type="checkbox">
+        Remember me
+    </label>
+</div>
+
+  <div class="action">
+    <%= f.submit  "Login", class: 'button is-primary' %>
+  </div>
+<% end %>
