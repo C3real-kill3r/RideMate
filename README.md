@@ -27,9 +27,8 @@ RidesMate app is a carpool application which allows an Andelan car owner to give
 ## Technologies Used
 
 - [Ruby](https://www.ruby-lang.org/en/)
-- [Sinatra](http://sinatrarb.com//)
-- [PostgreSQL](https://www.postgresql.org/)
+- [Rails](https://rubyonrails.org/)
 
 ### Author
 
-- Brian Ryb
+- [Brian Ryb](https://github.com/C3real-kill3r)
