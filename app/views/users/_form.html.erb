@@ -1,0 +1,23 @@
+
+<%= simple_form_for(@user) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :username, input_html: {class: 'input'}%>
+    <%= f.input :email, input_html: {class: 'input'}%>
+    <%= f.input :password, input_html: {class: 'input'}%>
+    <%= f.input :phone, input_html: {class: 'input'}%>
+    <%= f.input :bio, input_html: {class: 'textarea'}%>
+    <%= f.file_field :picture, input_html: {class: 'picture'}%>
+  </div>
+  <div class="field is-grouped">
+  <div class="control">
+    <button class="button is-text"></button>
+  </div>
+</div>
+  <div class="form-actions">
+    <%= f.button :submit, class: "button is-primary" %>
+  </div>
+<% end %>
+
