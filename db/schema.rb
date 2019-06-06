@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_04_195420) do
+ActiveRecord::Schema.define(version: 2019_06_06_232938) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "rides", force: :cascade do |t|
+    t.string "origin"
+    t.string "destination"
+    t.datetime "take_off"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "capacity"
+    t.index ["user_id", "created_at"], name: "index_rides_on_user_id_and_created_at"
+    t.index ["user_id"], name: "index_rides_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "username"
@@ -27,4 +39,5 @@ ActiveRecord::Schema.define(version: 2019_06_04_195420) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "rides", "users"
 end

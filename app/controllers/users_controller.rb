@@ -7,8 +7,8 @@ class UsersController < ApplicationController
     @users = User.all
     @search = params["search"]
     if @search.present?
-      @search_username = @search["search_username"]
-      @users = User.where("username ILIKE ?", "%#{@search_username}%")
+      @search_rider = @search["search_rider"]
+      @users = User.where("username ILIKE ?", "%#{@search_rider}%")
     end
   end
 
@@ -33,7 +33,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.html { redirect_to new_session_path, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
