@@ -3,6 +3,7 @@ class User < ApplicationRecord
   USERNAME = /\A[a-zA-Z0-9](\w|\.)*[a-zA-Z0-9]$\z/i
 
   has_secure_password
+  has_many :rides
   mount_uploader :picture, PictureUploader
   validates :username, presence: true, format: {
       with: USERNAME,

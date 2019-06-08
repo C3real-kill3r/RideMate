@@ -1,26 +1,25 @@
-<% content_for :page_title, "RideMates" %>
+<% content_for :page_title, "Ride Mates" %>
 <div class="pageloader"><span class="title"></span></div>
 <div class="container">
   <nav class="level">
     <!-- left side -->
     <div class="level-left">
         <p class="level-item">
-        <strong><%= link_to "Epic Ride Mate", users_path %> </strong>
+        <strong><%= link_to "All Riders", users_path %></strong>
         </p>
 
     </div>
     <div class="level-right">
       <p class="level-item">
         <%= simple_form_for :search, url: users_path, method: "GET" do |f| %>
-          <%= f.input :search_username, input_html: {value: "", placeholder: "type a username and press enter", class: 'input'}%>
+          <%= f.input :search_rider, input_html: {value: "", placeholder: "type a username and press enter", class: 'input'}%>
           <% end %>
       </p>
     </div>
   </nav>
 </div>
-
 <hr />
-
+<% if @users.count > 0 %>
 <% @users.each do |user| %>
 <div class="box">
   <article class="media">
@@ -40,16 +39,26 @@
             </div>
           </article>
       </div>
-      <nav class="level is-mobile">
-        <div class="level-left">
-          <a class="level-item" aria-label="reply">
-            <span class="icon is-small">
-              <i class="fas fa-reply" aria-hidden="true"></i>
-            </span>
-          </a>
-        </div>
-      </nav>
     </div>
   </article>
+</div>
+<% end %>
+<% else %>
+<div class="card" style="width:60%;padding:10px;margin-left:19%;">
+  <div class="card-content">
+    <p class="title">
+      “Sorry Mate, the user you're looking for hasn't signed up yet, spread the good news! ”
+    </p>
+    <p class="subtitle">
+      Yours Truly &#128540;
+    </p>
+  </div>
+  <footer class="card-footer">
+    <p class="card-footer-item">
+      <span>
+        <strong><%= link_to "Back to all Ride Mates", users_path %> </strong>
+      </span>
+    </p>
+  </footer>
 </div>
 <% end %>

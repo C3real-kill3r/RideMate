@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  origin: MyString
+  destination: MyString
+  take_off: 2019-06-06 18:13:50
+  user: one
+
+two:
+  origin: MyString
+  destination: MyString
+  take_off: 2019-06-06 18:13:50
+  user: two

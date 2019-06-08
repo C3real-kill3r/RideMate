@@ -17,6 +17,47 @@
         <div class="level-right">
           <% if current_user.username == @user.username %>
             <p class="level-item">
+                <div class="modal" id="myModal">
+                <div class="modal-background"></div>
+                <div class="modal-card">
+                    <header class="modal-card-head">
+                    <p class="modal-card-title">Provide Ride</p>
+                    <button class="delete" aria-label="close" data-bulma-modal="close"></button>
+                    </header>
+                    <section class="modal-card-body">
+                    <%= simple_form_for([@user, @user.rides.build]) do |f| %>
+                        <div class="field">
+                                <div class="control">
+                                    <%= f.input :origin, input_html: { class: 'input'}, wrapper: false, label_html: {class: 'label'} %>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control">
+                                    <%= f.input :destination, input_html: { class: 'input'}, wrapper: false, label_html: {class: 'label'} %>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control">
+                                    <%= f.input :take_off, input_html: { class: 'datetime'}, wrapper: false, label_html: {class: 'label'} %>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control">
+                                    <%= f.input :capacity, input_html: { class: 'input'}, wrapper: false, label_html: {class: 'label'} %>
+                                </div>
+                            </div>
+                    </section>
+                    <footer class="modal-card-foot">
+                    <%= f.button :submit, class: "button is-success" %>
+                    <%= link_to 'Cancel', @user, class: "button is-dark"%>
+                    </footer>
+                    <% end %>
+                </div>
+                </div>
+                <div style="padding:10px;">
+                <button id="btn" class="button is-dark" >Provide a Ride</button></div>
+            </p>
+            <p class="level-item">
                 <%= link_to "Edit", edit_user_path(@user), class: "button is-dark" %>
             </p>
           <% end %>
@@ -48,29 +89,40 @@
         </article>
         <article class="message">
             <div class="message-header">
-                <p>Ride Offer</p>
+                <p><%= @user.rides.count%> Ride(s) Offered</p>
             </div>
             <div class="message-body">
+            <% if @user.rides.count < 1%>
+                <strong>Sorry!</strong>
+                No rides at the moment
+                </p>
+            <% else %>
+             <% @user.rides.each do |rides|%>
                 <p>
                 <strong>Origin:</strong>
-                Nairobi, CBD
+                <%= rides.origin %>
                 </p>
                 <p>
                 <strong>Destination:</strong>
-                Dojo
+                <%= rides.destination %>
                 </p>
                 <p>
                 <strong>Take Off:</strong>
-                00800HRS
+                <%= rides.take_off %>
                 </p>
                 <p>
                 <strong>Max number of People:</strong>
-                4 Peeps
+                <%= rides.capacity %>
                 </p>
-                <p>
-                <strong>Message:</strong>
-                I only have space left for one more person
-                </p>
+            <% if current_user.username == @user.username %>
+            <button class="button is-danger">Delete</button>
+            <hr />
+            <% else%>
+            <button class="button is-success">Request</button>
+            <hr />
+            <% end %>
+            <% end %>
+            <% end %>
             </div>
         </article>
         </div>
