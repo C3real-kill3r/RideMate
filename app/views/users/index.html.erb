@@ -1,64 +1,125 @@
 <% content_for :page_title, "Ride Mates" %>
-<div class="pageloader"><span class="title"></span></div>
-<div class="container">
-  <nav class="level">
-    <!-- left side -->
-    <div class="level-left">
-        <p class="level-item">
-        <strong><%= link_to "All Riders", users_path %></strong>
-        </p>
 
-    </div>
-    <div class="level-right">
-      <p class="level-item">
-        <%= simple_form_for :search, url: users_path, method: "GET" do |f| %>
-          <%= f.input :search_rider, input_html: {value: "", placeholder: "type a username and press enter", class: 'input'}%>
-          <% end %>
-      </p>
-    </div>
-  </nav>
-</div>
-<hr />
-<% if @users.count > 0 %>
-<% @users.each do |user| %>
-<div class="box">
-  <article class="media">
-    <div class="media-left">
-      <figure class="image is-128x128">
-        <%= image_tag user.picture.url if user.picture? %>
-      </figure>
-    </div>
-    <div class="media-content">
-      <div class="content">
-        <p>
-          <strong><%= link_to user.username, user %></strong> <small><%= user.email %></small>
-          </p>
-          <article class="message">
-            <div class="message-body">
-              <%= user.bio %>
+<nav class="tabs is-boxed is-fullwidth is-medium">
+  <div class="container">
+    <ul>
+      <li class="tab is-active" onclick="openTab(event,'RideMates')"><a >Riders</a></li>
+      <li class="tab" onclick="openTab(event,'AllRides')"><a >All rides</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="container section">
+    <div id="RideMates" class="content-tab" >
+      <p>
+        <div class="container">
+          <nav class="level">
+            <!-- left side -->
+            <div class="level-left">
+                <p class="level-item">
+                <strong><%= link_to "All Riders", users_path %></strong>
+                </p>
+            </div>
+            <div class="level-right">
+              <p class="level-item">
+                <%= simple_form_for :search, url: users_path, method: "GET" do |f| %>
+                  <%= f.input :search_rider, input_html: {value: "", placeholder: "type a username and press enter", class: 'input'}%>
+                  <% end %>
+              </p>
+            </div>
+          </nav>
+        </div>
+        <hr />
+        <% if @users.count > 0 %>
+        <% @users.each do |user| %>
+        <div class="box">
+          <article class="media">
+            <div class="media-left">
+              <figure class="image is-128x128">
+                <%= image_tag user.picture.url if user.picture? %>
+              </figure>
+            </div>
+            <div class="media-content">
+              <div class="content">
+                <p>
+                  <strong><%= link_to user.username, user %></strong> <small><%= user.email %></small>
+                  </p>
+                  <article class="message">
+                    <div class="message-body">
+                      <%= user.bio %>
+                    </div>
+                  </article>
+              </div>
             </div>
           </article>
-      </div>
+        </div>
+        <% end %>
+        <% else %>
+        <div class="card" style="width:60%;padding:10px;margin-left:19%;">
+          <div class="card-content">
+            <p class="title">
+              “Sorry Mate, the user you're looking for hasn't signed up yet, spread the good news! ”
+            </p>
+            <p class="subtitle">
+              Yours Truly &#128540;
+            </p>
+          </div>
+          <footer class="card-footer">
+            <p class="card-footer-item">
+              <span>
+                <strong><%= link_to "Back to all Ride Mates", users_path %> </strong>
+              </span>
+            </p>
+          </footer>
+        </div>
+        <% end %>
+      </p>
     </div>
-  </article>
+    <div id="AllRides" class="content-tab" style="display:none">
+        <p>
+        <% if Ride.all.count > 0 %>
+          <section class = "section">
+            <div class = "container">
+              <table class = "table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+                  <thead>
+                    <tr>
+                        <th>Origin</th>
+                        <th>Destination</th>
+                        <th>Take Off</th>
+                        <th>Capacity</th>
+                        <th>Rider</th>
+                    </tr>
+                  </thead>
+                  <% Ride.order('origin DESC').find_each do |ride|%>
+                  <tbody>
+                  <td><%= ride.origin %></td>
+                  <td><%= ride.destination %></td>
+                  <td><%= ride.take_off %></td>
+                  <td><%= ride.capacity %></td>
+                  <td><%= ride.user.username %></td>
+                  </tbody>
+                  <% end %>
+              </table>
+            </div>
+      </section>
+      <% else %>
+      <div class="card" style="width:60%;padding:10px;margin-left:19%;">
+          <div class="card-content">
+            <p class="title">
+              “Sorry Mate, there are no rides available at the moment... ”
+            </p>
+            <p class="subtitle">
+              Yours Truly &#129318;&#127997;
+            </p>
+          </div>
+          <footer class="card-footer">
+            <p class="card-footer-item">
+              <span>
+                <strong><%= link_to "Back to all Ride Mates", users_path %> </strong>
+              </span>
+            </p>
+          </footer>
+        </div>
+      <% end %>
+    </p>
+    </div>
 </div>
-<% end %>
-<% else %>
-<div class="card" style="width:60%;padding:10px;margin-left:19%;">
-  <div class="card-content">
-    <p class="title">
-      “Sorry Mate, the user you're looking for hasn't signed up yet, spread the good news! ”
-    </p>
-    <p class="subtitle">
-      Yours Truly &#128540;
-    </p>
-  </div>
-  <footer class="card-footer">
-    <p class="card-footer-item">
-      <span>
-        <strong><%= link_to "Back to all Ride Mates", users_path %> </strong>
-      </span>
-    </p>
-  </footer>
-</div>
-<% end %>

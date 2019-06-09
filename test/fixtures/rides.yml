@@ -2,12 +2,14 @@
 
 one:
   origin: MyString
-  destination: MyString
+  destination: test@test.com
   take_off: 2019-06-06 18:13:50
+  capacity: 3
   user: one
 
 two:
   origin: MyString
   destination: MyString
   take_off: 2019-06-06 18:13:50
+  capacity: 5
   user: two
