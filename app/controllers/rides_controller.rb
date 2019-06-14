@@ -7,8 +7,7 @@ class RidesController < ApplicationController
     end
 
     def destroy
-        @user  = User.find(params[:user_id])
-		@ride = @user.rides.find(params[:id])
+		@ride = Ride.find(params[:id])
 		@ride.destroy
 		redirect_to users_path(@user)
     end
