@@ -17,47 +17,8 @@
         <div class="level-right">
           <% if current_user.username == @user.username %>
             <p class="level-item">
-                <div class="modal" id="myModal" style="padding: 10%;">
-                <div class="modal-background"></div>
-                <div class="modal-card">
-                    <header class="modal-card-head">
-                    <p class="modal-card-title">Provide Ride</p>
-                    <button class="delete" id="close" onclick="CloseModal()"></button>
-                    </header>
-                    <section class="modal-card-body">
-                    <%= simple_form_for([@user, @user.rides.build]) do |f| %>
-                    <%= f.error_notification %>
-                    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-                        <div class="field">
-                                <div class="control">
-                                    <%= f.input :origin, input_html: { class: 'input'}, wrapper: false, label_html: {class: 'label'} %>
-                                </div>
-                            </div>
-                            <div class="field">
-                                <div class="control">
-                                    <%= f.input :destination, input_html: { class: 'input'}, wrapper: false, label_html: {class: 'label'} %>
-                                </div>
-                            </div>
-                            <div class="field">
-                                <div class="control">
-                                    <%= f.input :take_off, input_html: { class: 'datetime'}, wrapper: false, label_html: {class: 'label'} %>
-                                </div>
-                            </div>
-                            <div class="field">
-                                <div class="control">
-                                    <%= f.input :capacity, input_html: { class: 'input'}, wrapper: false, label_html: {class: 'label'} %>
-                                </div>
-                            </div>
-                    </section>
-                    <footer class="modal-card-foot">
-                    <%= f.button :submit, class: "button is-success" %>
-                    <%= link_to 'Cancel', @user, class: "button is-dark"%>
-                    </footer>
-                    <% end %>
-                </div>
-                </div>
                 <div style="padding:10px;">
-                <button id="btn" class="button is-dark" onclick="OpenModal()" >Provide a Ride</button></div>
+                <button id="btn" class="button is-dark" onclick="OpenModal()" data-no-turbolink="true">Provide a Ride</button></div>
             </p>
             <p class="level-item">
                 <%= link_to "Edit", edit_user_path(@user), class: "button is-dark" %>
@@ -133,3 +94,43 @@
         </div>
     </div>
 </section>
+
+<!-- Modal for providing rides -->
+<div class="modal" id="myModal" style="padding: 10%;">
+<div class="modal-background"></div>
+<div class="modal-card">
+    <header class="modal-card-head">
+    <p class="modal-card-title">Provide Ride</p>
+    <button class="delete" id="close" onclick="CloseModal()"></button>
+    </header>
+    <section class="modal-card-body">
+    <%= simple_form_for([@user, @user.rides.build]) do |f| %>
+        <%= f.error_notification %>
+        <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+        <div class="field">
+            <div class="control">
+                <%= f.input :origin, input_html: { class: 'input'}, wrapper: false, label_html: {class: 'label'} %>
+            </div>
+        </div>
+        <div class="field">
+            <div class="control">
+                <%= f.input :destination, input_html: { class: 'input'}, wrapper: false, label_html: {class: 'label'} %>
+            </div>
+        </div>
+        <div class="field">
+            <div class="control">
+                <%= f.input :take_off, input_html: { class: 'datetime'}, wrapper: false, label_html: {class: 'label'} %>
+            </div>
+        </div>
+        <div class="field">
+            <div class="control">
+                <%= f.input :capacity, input_html: { class: 'input'}, wrapper: false, label_html: {class: 'label'} %>
+            </div>
+        </div>
+        <hr />
+        <%= f.button :submit, class: "button is-success" %>
+        <%= link_to 'Cancel', @user, class: "button is-dark"%>
+    </section>
+    <% end %>
+</div>
+</div>
