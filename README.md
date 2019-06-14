@@ -11,9 +11,15 @@ RidesMate app is a carpool application which allows an Andelan car owner to give
 - Change directory to the app's root with ```cd RideMate```
 - Then run ```bundle install```  to install the dependencies.
 - create a ```.env``` file and copy contents from the ```.env_sample``` available in the app's root directory, and replace them with your variables.
+- Run ```rails db:create``` to create the databases.
 - Run ```rails db:migrate``` to update the database.
 - Start the server by running ```rails s```
+- If you'd like to make modifications, run in a seperate terminal tab ```bundle exec guard``` to avoid restarting the server or refreshing the browser to effect the changes.
 - Then visit ```http://localhost:3000``` to view the app.
+
+## Running test
+- Since the test database is already created in the steps above;
+- Run the command ```rails test``` to run the tests.
 
 ## Installed gems
 
