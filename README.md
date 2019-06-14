@@ -1,7 +1,7 @@
+# RideMate
 [![Build Status](https://travis-ci.org/C3real-kill3r/RideMate.svg?branch=develop)](https://travis-ci.org/C3real-kill3r/RideMate)
 [![Coverage Status](https://coveralls.io/repos/github/C3real-kill3r/RideMate/badge.svg?branch=develop)](https://coveralls.io/github/C3real-kill3r/RideMate?branch=develop)
 
-# RideMate
 
 RidesMate app is a carpool application which allows an Andelan car owner to give a ride to another Andelan who does not have a car or who is not feeling like driving his/her own personal car. The two major steps involved in the application are the ride offer process (which allows a car owner makes his/her car open to colleagues who may be interested in riding with him/her)  and ride request process (which allows a colleague without a car to ask for a ride from the car owners heading to his/her route).
 
