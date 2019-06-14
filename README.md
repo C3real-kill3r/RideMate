@@ -1,5 +1,5 @@
-[![Build Status](https://travis-ci.org/C3real-kill3r/RideMate.svg?branch=ch-add-travis-ci-config-166398996)](https://travis-ci.org/C3real-kill3r/RideMate)
-[![Coverage Status](https://coveralls.io/repos/github/C3real-kill3r/RideMate/badge.svg?branch=ch-add-travis-ci-config-166398996)](https://coveralls.io/github/C3real-kill3r/RideMate?branch=ch-add-travis-ci-config-166398996)
+[![Build Status](https://travis-ci.org/C3real-kill3r/RideMate.svg?branch=develop)](https://travis-ci.org/C3real-kill3r/RideMate)
+[![Coverage Status](https://coveralls.io/repos/github/C3real-kill3r/RideMate/badge.svg?branch=develop)](https://coveralls.io/github/C3real-kill3r/RideMate?branch=develop)
 
 # RideMate
 
