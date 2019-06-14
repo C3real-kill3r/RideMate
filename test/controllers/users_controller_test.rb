@@ -20,13 +20,6 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should show user" do
-    get login_path, params: {user: {email: @user.email, password: @user.password_digest}}
-    controller.session[:user_id] = @user.id
-    get user_url(@user)
-    assert_response :success
-  end
-
   test "should get edit" do
     get edit_user_url(@user)
     assert_response :success

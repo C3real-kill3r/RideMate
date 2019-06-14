@@ -53,6 +53,8 @@ gem 'carrierwave', '~> 1.3', '>= 1.3.1'
 
 gem 'mini_magick', '~> 4.9', '>= 4.9.3'
 
+gem 'travis'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -76,6 +78,8 @@ group :development do
 end
 
 group :test do
+  gem 'simplecov', require: false
+  gem 'coveralls', require: false
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
