@@ -4,7 +4,6 @@ require 'coveralls'
 SimpleCov.start 'rails' do
   add_filter '/bin/'
   add_filter '/db/'
-  add_filter '/app/views/users/show.html.erb'
   add_filter '/test/' # for minitest
 end
 

@@ -14,3 +14,7 @@
  *= require_self
  */
  @import "bulma";
+
+ .hero.is-light.is-bold {background-image: linear-gradient(141deg, #b7cfd2 0%, #f5f5f5 71%, #fff 100%);}
+ .hero.is-light .navbar-link {color: rgba(37, 16, 35, 0.7);}
+ .hero.is-light .title {color: #282735;}

@@ -31,6 +31,8 @@ RidesMate app is a carpool application which allows an Andelan car owner to give
 - pg - a module that allows Ruby programs to interact with the PostgreSQL database engine.
 - bcrypt - a hashing function that allows us to build a password security platform that can scale with computation power.
 - bulma - A modern CSS framework based on Flexbox
+- Guard - Doing work to files as they change - A task runner of sorts
+- Guard Livereload - Reloads the browser when files change combined with the Live Reload extension on your favorite browser.
 - simple_form - flexible gem helping you with powerful components to create your forms.
 - carrierwave - helps to upload files in your Ruby applications, map them to a range of ORMs, store them on different backends.
 - mini_magick - Manipulate images with minimal use of memory via ImageMagick / GraphicsMagick
