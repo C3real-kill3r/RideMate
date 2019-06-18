@@ -1,59 +1,23 @@
 
-<%= form_with(model: @user, :as =>user) do |f| %>
-<div class="field">
-  <strong><%= f.label :username %></strong>
-  <div class="control has-icons-left has-icons-right">
-    <%= f.text_field :username, autofocus: true, autocomplete: 'username', class: 'input', required: true %>
-    <span class="icon is-small is-left">
-      <i class="fas fa-user"></i>
-    </span>
+<%= simple_form_for(@user) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :username, input_html: {class: 'input'}, wrapper: false, label_html: {class: 'label'}%>
+    <%= f.input :email, input_html: {class: 'input'}, wrapper: false, label_html: {class: 'label'}%>
+    <%= f.input :password, input_html: {class: 'input'}, wrapper: false, label_html: {class: 'label'}%>
+    <%= f.input :phone, input_html: {class: 'input'}, wrapper: false, label_html: {class: 'label'}%>
+    <%= f.input :bio, input_html: {class: 'textarea'}, wrapper: false, label_html: {class: 'label'}%>
+    <div class="label">Picture</div>
+    <%= f.file_field :picture, input_html: {class: 'picture'}, wrapper: false, label_html: {class: 'label'}%>
+  </div>
+  <div class="field is-grouped">
+  <div class="control">
+    <button class="button is-text"></button>
   </div>
 </div>
-<div class="field">
-  <strong><%= f.label :email %></strong>
-  <div class="control has-icons-left has-icons-right">
-    <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'input', required: true %>
-    <span class="icon is-small is-left">
-      <i class="fas fa-envelope"></i>
-    </span>
+  <div class="form-actions">
+    <%= f.button :submit, class: "button is-primary" %>
   </div>
-</div>
-<div class="field">
-  <strong><%= f.label :password %></strong>
-  <div class="control has-icons-left has-icons-right">
-    <%= f.password_field :password, autocomplete: 'current-password', class: 'input', required: true %>
-    <span class="icon is-small is-left">
-      <i class="fas fa-lock"></i>
-    </span>
-  </div>
-</div>
-<div class="field">
-  <strong><%= f.label :phone %></strong>
-  <div class="control has-icons-left has-icons-right">
-    <%= f.text_field :phone, autocomplete: 'tel-national', class: 'input', required: true %>
-    <span class="icon is-small is-left">
-      <i class="fas fa-phone"></i>
-    </span>
-  </div>
-</div>
-<div class="field">
-  <strong><%= f.label :bio %></strong>
-  <div class="field-body">
-    <div class="field">
-      <div class="control">
-        <%= f.text_area :bio, autocomplete: 'bio', class: 'textarea', placeholder: 'tell us something about you', required: true %>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="field">
-  <strong><%= f.label :picture %></strong>
-  <div class="control has-icons-left has-icons-right">
-    <%= f.file_field :picture, class: 'picture', required: true%>
-  </div>
-</div>
-<br />
-<div class="action">
-  <%= f.submit  "Submit", class: 'button is-primary' %>
-</div>
 <% end %>

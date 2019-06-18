@@ -7,8 +7,8 @@ class UsersController < ApplicationController
     @users = User.all
     @search = params["search"]
     if @search.present?
-      @search_rider = @search["search_rider"]
-      @users = User.where("username ILIKE ?", "%#{@search_rider}%")
+      @search_driver = @search["search_driver"]
+      @users = User.where("username ILIKE ?", "%#{@search_driver}%")
     end
   end
 

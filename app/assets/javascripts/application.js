@@ -29,21 +29,19 @@ function openTab(evt, tabName) {
   evt.currentTarget.className += ' is-active';
 }
 
-//One Modal
-function OpenModal() {
+//Open Rides Modal
+function OpenModal(modalName) {
   //Get element with Id= "modal"
-  var modal = document.getElementById('myModal');
+  var modal = document.getElementById(modalName);
   //Change style to display = "block"
   modal.style.display = 'block';
 }
 
-function CloseModal() {
-
-    //For single modal
-    var modal = document.getElementById("myModal");
-    var close = document.getElementById("close");
-    //If the click was on the modal the modal style display = "none"
-    if (event.target == close) {
-        modal.style.display = "none";
-    }
+function CloseModal(modalName, close) {
+  var modal = document.getElementById(modalName);
+  var close = document.getElementById(close);
+  //If the click was on the modal the modal style display = "none"
+  if (event.target == close) {
+    modal.style.display = 'none';
+  }
 }
