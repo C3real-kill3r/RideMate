@@ -1,9 +1,9 @@
 class RidesController < ApplicationController
-    before_action :set_ride, only: [:destroy, :request_ride]
+    before_action :set_ride, only: [:destroy, :request_ride, :cancel_request]
     before_action :ride_params, only: [:create]
+    before_action :set_user, only: [:create, :request_ride, :cancel_request]
 
     def create
-        @user  = User.find(params[:user_id])
         @ride = @user.rides.create(ride_params)
         redirect_to users_path(@user)
     end
@@ -14,8 +14,12 @@ class RidesController < ApplicationController
     end
 
     def request_ride
-        @user  = User.find(session[:user_id])
         @ride.requests.create(user_id: @user.id)
+        redirect_to users_path(@user)
+    end
+
+    def cancel_request
+        Request.where(user_id: @user.id, ride_id: @ride.id).destroy_all
         redirect_to users_path(@user)
     end
 
@@ -27,6 +31,10 @@ class RidesController < ApplicationController
 
     def ride_params
         params.require(:ride).permit(:origin, :destination, :take_off, :capacity)
+    end
+
+    def set_user
+        @user  = User.find(session[:user_id])
     end
 
 end
