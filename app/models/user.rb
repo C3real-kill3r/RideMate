@@ -1,9 +1,10 @@
 class User < ApplicationRecord
-  EMAIL = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
+  EMAIL = /\A[a-zA-Z0-9_.+-]+@andela+\.com+$\z/i
   USERNAME = /\A[a-zA-Z0-9](\w|\.)*[a-zA-Z0-9]$\z/i
 
   has_secure_password
   has_many :rides, dependent: :destroy
+  has_many :requests, dependent: :destroy
   mount_uploader :picture, PictureUploader
   validates :username, presence: true, format: {
       with: USERNAME,
@@ -11,8 +12,7 @@ class User < ApplicationRecord
       :uniqueness => true
   validates :email, format: {
       with: EMAIL,
-      message: "Incorrect email format, try example@example.com"},
+      message: "format is incorrect, try your.name@andela.com"},
       :uniqueness => true
-  validates :bio, presence: true
-  validates :phone, presence: true
+  validates :bio, :phone, :picture, presence: true
 end

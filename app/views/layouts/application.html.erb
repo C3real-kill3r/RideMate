@@ -39,7 +39,7 @@
                   <div class="dropdown is-hoverable">
                     <div class="dropdown-trigger">
                       <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
-                        <span>Rides</span>
+                        <span>Menu</span>
                         <span class="icon is-small">
                           <i class="fas fa-angle-down" aria-hidden="true"></i>
                         </span>
@@ -47,15 +47,21 @@
                     </div>
                     <div class="dropdown-menu" id="dropdown-menu4" role="menu">
                       <div class="dropdown-content">
-                        <a class="dropdown-item" onclick="openTab(event,'AllRides')">
-                          Click to get Rides/Mates
+                        <a class="dropdown-item">
+                          <strong>Welcome back &#128101;</strong>
                         </a>
+                        <div class="dropdown-item">
+                          <%= link_to "Home", root_path%>
+                        </div>
                         <div class="dropdown-item">
                           <%= link_to "Ride Mates", users_path%>
                         </div>
+                        <div class="dropdown-item">
+                          <%= link_to "My Profile", "/users/#{current_user.id}"%>
+                        </div>
                         <hr class="dropdown-divider">
                         <div class="dropdown-item">
-                          <p>Have fun carpooling with a <strong>Ride Mate</strong>. Have an EPIC ride .</p>
+                          <p>Enjoy carpooling with a <strong>Ride Mate</strong>. Have an EPIC ride .</p>
                         </div>
                       </div>
                     </div>

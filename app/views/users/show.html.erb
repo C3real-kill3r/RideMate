@@ -18,7 +18,7 @@
           <% if current_user.username == @user.username %>
             <p class="level-item">
                 <div style="padding:10px;">
-                <button id="btn" class="button is-dark" onclick="OpenModal()" data-no-turbolink="true">Provide a Ride</button></div>
+                <button id="btn" class="button is-dark" onclick="OpenModal('myModal')" data-no-turbolink="true">Provide a Ride</button></div>
             </p>
             <p class="level-item">
                 <%= link_to "Edit", edit_user_path(@user), class: "button is-dark" %>
@@ -55,40 +55,52 @@
                 <p><%= @user.rides.count%> Ride(s) Offered</p>
             </div>
             <div class="message-body">
+            <div class="columns is-multiline is-mobile">
             <% if @user.rides.count < 1%>
                 <strong>Sorry!</strong>
                 No rides at the moment
                 </p>
             <% else %>
-             <% @user.rides.each do |rides|%>
+             <% @user.rides.each do |ride|%>
+             <div class="column is-half-touch is-one-quarter-desktop">
                 <p>
                 <strong>Origin:</strong>
-                <%= rides.origin %>
+                <%= ride.origin %>
                 </p>
                 <p>
                 <strong>Destination:</strong>
-                <%= rides.destination %>
+                <%= ride.destination %>
                 </p>
                 <p>
                 <strong>Take Off:</strong>
-                <%= rides.take_off %>
+                <%= ride.take_off %>
                 </p>
                 <p>
                 <strong>Max number of People:</strong>
-                <%= rides.capacity %>
+                <%= ride.capacity %>
                 </p>
-            <% if current_user.id == rides.user_id %>
-            <%= button_to 'Delete', [rides.user, rides],
+            <% if current_user.id == ride.user_id %>
+            <div class="field is-grouped">
+            <%= button_to 'Delete', [ride.user, ride],
                :method => :delete,
-               data: { confirm: 'Are you sure you?' }, class: "button is-danger"
+               data: { confirm: 'Are you sure you want to delete the ride?' }, class: "button is-danger"
                 %>
+            &nbsp;
+            <a class="button is-dark" onclick="OpenModal('rideRequests')">View Requests</a>
+            </div>
             <hr />
-            <% else%>
-            <button class="button is-success">Request</button>
+            <% elsif Request.exists?(user_id: current_user.id, ride_id: ride.id) %>
+            <a class="button is-danger">Cancel Request</a>
+            <hr />
+            <%else%>
+            <%= link_to "Request Ride", "/#{ride.id}/request", class: "button is-success"%>
             <hr />
             <% end %>
+            <div class="is-divider-vertical"></div>
+            </div>
             <% end %>
             <% end %>
+            </div>
             </div>
         </article>
         </div>
@@ -101,7 +113,7 @@
 <div class="modal-card">
     <header class="modal-card-head">
     <p class="modal-card-title">Provide Ride</p>
-    <button class="delete" id="close" onclick="CloseModal()"></button>
+    <button class="delete" id="close" onclick="CloseModal('myModal', 'close')"></button>
     </header>
     <section class="modal-card-body">
     <%= simple_form_for([@user, @user.rides.build]) do |f| %>
@@ -133,4 +145,23 @@
     </section>
     <% end %>
 </div>
+</div>
+
+<!-- Modal for viewing requests for rides Provided -->
+<div class="modal" id="rideRequests" style="padding: 10%;">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Ride Requests</p>
+      <button class="delete" id="exit" onclick="CloseModal('rideRequests','exit')"></button>
+    </header>
+    <section class="modal-card-body">
+    <!-- Work in Progress -->
+      <%Request.joins(:ride).where(user_id: current_user.id).each do |r|%>
+      <div class="card">
+      <%= r.ride.user.username%>
+      </div>
+      <%end%>
+    </section>
+  </div>
 </div>
