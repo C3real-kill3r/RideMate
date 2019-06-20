@@ -5,7 +5,7 @@ class RidesController < ApplicationController
 
     def create
         @ride = @user.rides.create(ride_params)
-        redirect_to users_path(@user)
+        redirect_to [@user]
     end
 
     def destroy
