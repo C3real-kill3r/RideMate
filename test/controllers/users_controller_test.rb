@@ -8,7 +8,6 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should get index" do
-    skip()
     get :index, params: {use_route: "/users"}
     assert_response :success
   end

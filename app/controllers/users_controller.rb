@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
+    @rides = Ride.all.order('origin ASC, destination ASC, take_off ASC')
     @users = User.all
     @search = params["search"]
     if @search.present?
