@@ -1,26 +1,23 @@
 require 'test_helper'
 
-class RidesControllerTest < ActionDispatch::IntegrationTest
-  def log_in_as(user, password: 'password')
-        post login_path, params: { session: { email: user.email, password: password} }
-    end
+class RidesControllerTest < ActionController::TestCase
+  setup do
+    @user = users(:one)
+    @ride = rides(:one)
+    log_in_as @user
+  end
 
   test "should create ride" do
-    skip()
-    @ride = rides(:one)
-    setup { log_in_as 'one' }
-    @request.session[:user_id] = user.id
-    post '/users/298486374/rides', params: { ride: { origin: @ride.origin, destination: @ride.destination, take_off: @ride.take_off, capacity: @ride.capacity } }
-    assert_redirected_to '/users.298486374'
+    post :create , params: { use_route: "/users/:user_id/rides", user_id: @user.id, ride: {origin: @ride.origin, destination: @ride.destination, take_off: @ride.take_off, capacity: @ride.capacity }}
+    assert_redirected_to "/users/#{@user.id}"
   end
 
   test "should delete ride" do
-    delete '/users/298486374/rides/298486374'
+    delete :destroy, params: {use_route: "/users/:user_id/rides/:id", user_id: @user.id, id: @ride.id}
     assert_redirected_to '/users'
   end
 
   test "should request ride" do
-    skip()
-    get "/298486374/request", params: {request: {user_id: @user.id, ride_id: @ride.id}}
+    get :request_ride, params: {use_route: "/:id/request", id: @ride.id}
   end
 end

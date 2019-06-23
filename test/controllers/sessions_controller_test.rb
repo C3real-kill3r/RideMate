@@ -1,27 +1,22 @@
 require 'test_helper'
 
-class SessionsControllerTest < ActionDispatch::IntegrationTest
+class SessionsControllerTest < ActionController::TestCase
   setup do
     @user = users(:one)
   end
 
-  test "should get new" do
-    get signup_path
-    assert_response :success
-  end
-
   test "should get create" do
-    get login_path
+    get :new
     assert_response :success
   end
 
   test "should login user" do
-    post login_path(@user)
+    post :create, session: { user_id: @user.id }
     assert_response :success
   end
 
   test "should get destroy" do
-    get logout_path
+    get :destroy
     assert_redirected_to root_url
   end
 
