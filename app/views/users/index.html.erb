@@ -90,10 +90,10 @@
                         <th>Destination</th>
                         <th>Take Off</th>
                         <th>Capacity</th>
-                        <th>Driver</th>
+                        <th></th>
                     </tr>
                   </thead>
-                  <% Ride.all.order('origin ASC, destination ASC, take_off ASC').each do |ride|%>
+                  <% @rides.each do |ride|%>
                   <tbody>
                   <td><%= ride.origin %></td>
                   <td><%= ride.destination %></td>
