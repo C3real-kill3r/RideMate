@@ -19,5 +19,11 @@ class RidesControllerTest < ActionController::TestCase
 
   test "should request ride" do
     get :request_ride, params: {use_route: "/:id/request", id: @ride.id}
+    assert_redirected_to "/users.#{@user.id}"
+  end
+
+  test "should cancel request" do
+    get :cancel_request, params: {use_route: "/:id/cancel", id: @ride.id}
+    assert_redirected_to "/users.#{@user.id}"
   end
 end
