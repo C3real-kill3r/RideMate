@@ -1,5 +1,9 @@
 
 <%= simple_form_for(@user) do |f| %>
+<div class="columns is-centered is-mobile">
+  <div class="column is-half-touch is-half-desktop">
+  <div class="card">
+  <div class="card-content">
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
@@ -19,5 +23,9 @@
 </div>
   <div class="form-actions">
     <%= f.button :submit, class: "button is-primary" %>
+    </div>
+  </div>
+  </div>
+  </div>
   </div>
 <% end %>
